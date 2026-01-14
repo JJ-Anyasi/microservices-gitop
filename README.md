@@ -1,0 +1,1 @@
+# GitOps Configuration for Microservices\n\nThis repo contains:\n- Helm charts for each service\n- Environment-specific values\n- ArgoCD Application manifests\n\nServices: frontend, backend, user-service
