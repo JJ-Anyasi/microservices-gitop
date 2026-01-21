@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/jj-anyasi/microservices-gitops.git
+    repoURL: https://github.com/jj-anyasi/microservices-gitop.git
     targetRevision: main
     path: charts/backend
     helm:
