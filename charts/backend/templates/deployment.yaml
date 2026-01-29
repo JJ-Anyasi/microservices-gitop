@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "backend.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "backend.labels" . | nindent 4 }}
 spec:
@@ -31,7 +32,3 @@ spec:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
-          {{- if .Values.startupProbe }}
-          startupProbe:
-            {{- toYaml .Values.startupProbe | nindent 12 }}
-          {{- end }}

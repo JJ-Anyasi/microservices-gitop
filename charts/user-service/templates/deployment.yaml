@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "user-service.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "user-service.labels" . | nindent 4 }}
 spec:
@@ -15,19 +16,19 @@ spec:
         {{- include "user-service.selectorLabels" . | nindent 8 }}
     spec:
       containers:
-      - name: {{ .Chart.Name }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}"
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
-        ports:
-        - name: http
-          containerPort: {{ .Values.service.targetPort }}
-          protocol: TCP
-        env:
-        - name: PORT
-          value: "{{ .Values.service.targetPort }}"
-        resources:
-          {{- toYaml .Values.resources | nindent 12 }}
-        livenessProbe:
-          {{- toYaml .Values.livenessProbe | nindent 12 }}
-        readinessProbe:
-          {{- toYaml .Values.readinessProbe | nindent 12 }}
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.targetPort }}
+              protocol: TCP
+          env:
+            - name: PORT
+              value: "{{ .Values.service.targetPort }}"
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
