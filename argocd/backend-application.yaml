@@ -15,7 +15,7 @@ spec:
       releaseName: backend
   destination:
     server: https://kubernetes.default.svc
-    # No namespace → everything goes to 'default'
+    namespace: default          # ← this is the missing piece
   syncPolicy:
     automated:
       prune: true

@@ -15,6 +15,7 @@ spec:
       releaseName: user-service
   destination:
     server: https://kubernetes.default.svc
+    namespace: user-service
   syncPolicy:
     automated:
       prune: true
