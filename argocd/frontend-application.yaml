@@ -15,7 +15,7 @@ spec:
       releaseName: frontend
   destination:
     server: https://kubernetes.default.svc
-    namespace: frontend
+    namespace: microservices
   syncPolicy:
     automated:
       prune: true

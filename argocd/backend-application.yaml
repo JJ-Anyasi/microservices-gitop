@@ -15,7 +15,7 @@ spec:
       releaseName: backend
   destination:
     server: https://kubernetes.default.svc
-    namespace: default          # ← this is the missing piece
+    namespace: microservices
   syncPolicy:
     automated:
       prune: true

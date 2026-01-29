@@ -15,7 +15,7 @@ spec:
       releaseName: user-service
   destination:
     server: https://kubernetes.default.svc
-    namespace: user-service
+    namespace: microservices
   syncPolicy:
     automated:
       prune: true
