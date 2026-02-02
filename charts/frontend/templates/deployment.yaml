@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "frontend.fullname" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ .Release.Namespace | default "microservices" }}
   labels:
     {{- include "frontend.labels" . | nindent 4 }}
 spec:
@@ -26,6 +26,12 @@ spec:
           env:
             - name: PORT
               value: "{{ .Values.service.targetPort }}"
+            {{- if .Values.extraEnv }}
+            {{- range .Values.extraEnv }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+            {{- end }}
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           livenessProbe:

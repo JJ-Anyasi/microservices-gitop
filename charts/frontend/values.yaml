@@ -42,3 +42,7 @@ startupProbe:
     port: http
   failureThreshold: 30
   periodSeconds: 10
+
+  extraEnv:
+  - name: BACKEND_URL
+    value: "http://backend.microservices.svc.cluster.local:80"
