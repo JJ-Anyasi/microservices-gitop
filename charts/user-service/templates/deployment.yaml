@@ -26,6 +26,12 @@ spec:
           env:
             - name: PORT
               value: "{{ .Values.service.targetPort }}"
+            {{- if .Values.extraEnv }}
+            {{- range .Values.extraEnv }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+            {{- end }}
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           livenessProbe:
