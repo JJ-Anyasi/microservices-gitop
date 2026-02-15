@@ -36,6 +36,7 @@ readinessProbe:
   timeoutSeconds: 3
   failureThreshold: 3
 
-  extraEnv:
+extraEnv:
   - name: BACKEND_URL
     value: "http://backend.microservices.svc.cluster.local:80"
+
