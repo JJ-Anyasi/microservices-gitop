@@ -178,15 +178,38 @@ Argo CD continuously watches the repository and automatically deploys updated im
 
 ## Screenshots and Demo
 
-Add screenshots demonstrating:
+### Argo CD Dashboard
+All three applications (backend, frontend, user-service) are **Synced** and **Healthy**.
 
-* Running pods in the `microservices` namespace
-* Kubernetes services
-* Argo CD dashboard showing synced applications
-* Frontend UI response
-* Successful GitHub Actions pipeline run
+![Argo CD Overview](screenshot/argocd-dashboard.png)
 
-Optional: include a short demo video.
+---
+
+### Pods Running
+All microservices pods are in Running state (1/1 Ready) in the `microservices` namespace.
+
+![Pods Running](screenshot/running-pods.png)
+
+---
+
+### Frontend in Action
+Frontend UI successfully fetching and displaying data from the backend service.
+
+![Frontend UI](screenshot/frontend-ui.png)
+
+---
+
+### CI/CD Pipeline
+GitHub Actions build and Docker image push completed successfully.
+
+![GitHub Actions](screenshot/github-actions.png)
+
+---
+
+### User Service Response
+Mock users endpoint returning data.
+
+![User Service Response](screenshot/user-service-users.png)
 
 ---
 
