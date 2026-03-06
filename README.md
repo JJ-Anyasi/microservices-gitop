@@ -1,4 +1,4 @@
-# Cloud-Native Microservices with GitOps
+# Microservices with GitOps
 
 A complete 3-service microservices application built with Node.js and Express, containerized with Docker, packaged with Helm charts, and deployed declaratively to Kubernetes using GitOps with Argo CD.
 
