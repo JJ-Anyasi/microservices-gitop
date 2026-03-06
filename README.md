@@ -31,10 +31,8 @@ This project demonstrates a modern DevOps workflow for cloud-native microservice
 ---
 
 ## Architecture
----
-config:
-  theme: redux
----
+
+```mermaid
 sequenceDiagram
     participant Developer as Developer
     participant GitHub as GitHub Repo
@@ -57,6 +55,7 @@ sequenceDiagram
     UserService-->>Backend: Return mock users JSON
     Backend-->>Frontend: Return message + timestamp JSON
     Frontend-->>Developer: Render UI with backend data
+```
 
 ## Technologies
 
