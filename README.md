@@ -31,21 +31,32 @@ This project demonstrates a modern DevOps workflow for cloud-native microservice
 ---
 
 ## Architecture
+---
+config:
+  theme: redux
+---
+sequenceDiagram
+    participant Developer as Developer
+    participant GitHub as GitHub Repo
+    participant Actions as GitHub Actions CI
+    participant DockerHub as Docker Hub
+    participant ArgoCD as Argo CD
+    participant K8s as Kubernetes Cluster (Kind)
+    participant Frontend as Frontend Pod
+    participant Backend as Backend Pod
+    participant UserService as User Service Pod
 
-```mermaid
-graph TD
-    A[Frontend<br/>Node.js + Express] -->|GET /api/message| B[Backend<br/>Node.js + Express]
-    B -->|GET /users| C[User Service<br/>Node.js + Express]
-
-    subgraph Kubernetes_Cluster_Kind
-        D[Argo CD] -->|Syncs Git Repo| E[Helm Charts]
-        E --> F[Deployments and Services<br/>Namespace: microservices]
-    end
-
-    G[GitHub Repository] --> H[GitHub Actions]
-    H --> I[Docker Hub Images]
-    D --> F
-```
+    Developer->>GitHub: Push code changes to main
+    GitHub->>Actions: Trigger CI on push
+    Actions->>DockerHub: Build & push images (backend, frontend, user-service)
+    GitHub->>ArgoCD: Argo CD watches repo for changes
+    ArgoCD->>K8s: Render Helm charts & sync Deployments/Services
+    Note over K8s: Namespace: microservices
+    Frontend->>Backend: GET /api/message (via DNS http://backend:80)
+    Backend->>UserService: GET /users (via DNS http://user-service:80)
+    UserService-->>Backend: Return mock users JSON
+    Backend-->>Frontend: Return message + timestamp JSON
+    Frontend-->>Developer: Render UI with backend data
 
 ## Technologies
 
